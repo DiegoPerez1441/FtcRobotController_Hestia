@@ -33,7 +33,6 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
@@ -52,31 +51,28 @@ import com.qualcomm.robotcore.util.Range;
  */
 
 @TeleOp(name="Basic: Linear OpMode", group="Linear Opmode")
-@Disabled
-public class Text_BasicOpMode_Liner extends LinearOpMode {
+//@Disabled
+public class BasicOpMode_Linear extends LinearOpMode {
 
-    // Declare OpMode members.
-    private final ElapsedTime runtime = new ElapsedTime();
+    //========================================
+    // DECLARE OPMODE MEMBERS
+    //========================================
+
+    // Motors
+    private ElapsedTime runtime = new ElapsedTime();
     private DcMotor leftDrive = null;
     private DcMotor rightDrive = null;
 
-    //We created a servo object an a variable to hold its position
-    Servo clawServo;
-    double clawServo_position =0.0;
+    // Servos
 
     @Override
     public void runOpMode() {
         telemetry.addData("Status", "Initialized");
         telemetry.update();
 
-        /*
-         * Hardware Mapping
-         * */
-
-        //We have the hardware mapped to the servo object to the actual servo
-        clawServo = hardwareMap.servo.get("clasServo")
-        // Reset the servo's position to 0 degrees
-        clawServo.setPosition(clawServo_position);
+        //========================================
+        // HARDWARE MAPPING
+        //========================================
 
         // Initialize the hardware variables. Note that the strings used here as parameters
         // to 'get' must correspond to the names assigned during the robot configuration
@@ -95,6 +91,10 @@ public class Text_BasicOpMode_Liner extends LinearOpMode {
 
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
+
+            //========================================
+            // POV DRIVING MODE
+            //========================================
 
             // Setup a variable for each drive wheel to save power level for telemetry
             double leftPower;
@@ -119,32 +119,9 @@ public class Text_BasicOpMode_Liner extends LinearOpMode {
             leftDrive.setPower(leftPower);
             rightDrive.setPower(rightPower);
 
-            /*
-            * Servo STUFF
-            * */
-
-            if(gamepad1.x) {
-                clawServo.setPosition(1);
-            } else if (gamepad1.y) {
-                clawServo.setPosition(0.0);
-            }
-
-           /* if (gamepad1.a) {
-                 Open servo2
-            }
-
-            if (gamepad1.b) {
-                 Open servo 3
-            }
-            * * /
-
-            // Both
-            // clawServo.setPosition(gamepad1.right_trigger);
-
-
-             /*
-        Telemetry Section
-         */
+            //========================================
+            // GAMEPAD1
+            //========================================
 
             // Show the elapsed game time and wheel power.
             telemetry.addData("Status", "Run Time: " + runtime.toString());
