@@ -190,7 +190,6 @@ public class DriverControl extends LinearOpMode {
             }
 
 
-
             // Both of them return and receive a value from 0.0 - 1.0
             clawServo.setPosition(gamepad1.right_trigger);
 
