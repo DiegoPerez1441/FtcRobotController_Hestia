@@ -29,7 +29,6 @@
 
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -52,8 +51,12 @@ import com.qualcomm.robotcore.util.Range;
  */
 
 @TeleOp(name="Basic: Linear OpMode", group="Linear Opmode")
-@Disabled
-public class Text_BasicOpMode_Liner extends LinearOpMode {
+//@Disabled
+public class DriverControl extends LinearOpMode {
+
+    //========================================
+    // DECLARE OPMODE MEMBERS
+    //========================================
 
     // Declare OpMode members.
     private final ElapsedTime runtime = new ElapsedTime();
@@ -140,8 +143,8 @@ public class Text_BasicOpMode_Liner extends LinearOpMode {
             }
 
             /*
-            * Creating a variable to switch between profiles to control different servos
-            */
+             * Creating a variable to switch between profiles to control different servos
+             */
 
             int DriverProfile = 1;
 
@@ -157,7 +160,7 @@ public class Text_BasicOpMode_Liner extends LinearOpMode {
              * Servo STUFF
              * */
 
-             if (DriverProfile == 1){
+            if (DriverProfile == 1){
                 if(gamepad1.x) {
                     clawServo.setPosition(1);
                 } else if (gamepad1.y) {
@@ -169,27 +172,27 @@ public class Text_BasicOpMode_Liner extends LinearOpMode {
                 } else if (gamepad1.b) {
                     clawServoHand1.setPosition(0.0);
                 }
-             }
+            }
 
-             if (DriverProfile ==2){
-                 if(gamepad1.x) {
-                     clawServo2.setPosition(1);
-                 } else if (gamepad1.y) {
-                     clawServo2.setPosition(0.0);
-                 }
+            if (DriverProfile ==2){
+                if(gamepad1.x) {
+                    clawServo2.setPosition(1);
+                } else if (gamepad1.y) {
+                    clawServo2.setPosition(0.0);
+                }
 
-                 if(gamepad1.a) {
-                     clawServoHand2.setPosition(1);
-                 } else if (gamepad1.b) {
-                     clawServoHand2.setPosition(0.0);
-                 }
+                if(gamepad1.a) {
+                    clawServoHand2.setPosition(1);
+                } else if (gamepad1.b) {
+                    clawServoHand2.setPosition(0.0);
+                }
 
-             }
+            }
 
 
 
             // Both of them return and receive a value from 0.0 - 1.0
-              clawServo.setPosition(gamepad1.right_trigger);
+            clawServo.setPosition(gamepad1.right_trigger);
 
 
              /*
