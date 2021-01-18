@@ -50,7 +50,7 @@ import com.qualcomm.robotcore.util.Range;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@TeleOp(name="Basic: Linear OpMode", group="Linear Opmode")
+@TeleOp(name="Driver Control", group="Linear Opmode")
 //@Disabled
 public class DriverControl extends LinearOpMode {
 
@@ -58,41 +58,46 @@ public class DriverControl extends LinearOpMode {
     // DECLARE OPMODE MEMBERS
     //========================================
 
-    // Declare OpMode members.
+    // Misc
     private final ElapsedTime runtime = new ElapsedTime();
+
+    // Motors
     private DcMotor leftDrive = null;
     private DcMotor rightDrive = null;
 
-    //We created a servo object an a variable to hold its position
+    // We created a servo object an a variable to hold its position
     Servo clawServo;
-    double clawServo_position =0.0;
+    double clawServo_position = 0.0;
+
     Servo clawServoHand1;
-    double clawServoHand1_position =0.0;
+    double clawServoHand1_position = 0.0;
+
     Servo clawServo2;
-    double clawServo2_position =0.0;
+    double clawServo2_position = 0.0;
+
     Servo clawServoHand2;
-    double clawServoHand2_position;
+    double clawServoHand2_position = 0.0;
 
     @Override
     public void runOpMode() {
         telemetry.addData("Status", "Initialized");
         telemetry.update();
 
-        /*
-         * Hardware Mapping
-         * */
+        //========================================
+        // HARDWARE MAPPING
+        //========================================
 
-        //We have the hardware mapped to the servo object to the actual servo
-
+        // We have the hardware mapped to the servo object to the actual servo
         clawServo = hardwareMap.servo.get("clawServo");
         clawServoHand1 = hardwareMap.servo.get("ClawServoHand");
-        clawServo2 =hardwareMap.servo.get("ClawServo2");
+
+        clawServo2 = hardwareMap.servo.get("ClawServo2");
         clawServoHand2 = hardwareMap.servo.get("clawServoHand2");
 
         // Reset the servo's position to 0 degrees
-
         clawServo.setPosition(clawServo_position);
         clawServoHand1.setPosition(clawServoHand1_position);
+
         clawServo2.setPosition(clawServo2_position);
         clawServoHand2.setPosition(clawServoHand2_position);
 
@@ -136,6 +141,7 @@ public class DriverControl extends LinearOpMode {
             // Send calculated power to wheels
             leftDrive.setPower(leftPower);
             rightDrive.setPower(rightPower);
+
             // A button to break instantly
             if (gamepad1.right_stick_button == true) {
                 leftDrive.setPower(0);
@@ -145,6 +151,11 @@ public class DriverControl extends LinearOpMode {
             /*
              * Creating a variable to switch between profiles to control different servos
              */
+
+            /*
+             * The System.out.println() commands will only print on the computer's console and not
+             * on the driver control station. To achieve this you will need to use telemetry
+             * */
 
             int DriverProfile = 1;
 
@@ -192,11 +203,10 @@ public class DriverControl extends LinearOpMode {
 
             // Both of them return and receive a value from 0.0 - 1.0
             clawServo.setPosition(gamepad1.right_trigger);
-            //Test line
 
-             /*
-        Telemetry Section
-         */
+            /*
+             * Telemetry
+             * */
 
             // Show the elapsed game time and wheel power.
             telemetry.addData("Status", "Run Time: " + runtime.toString());
