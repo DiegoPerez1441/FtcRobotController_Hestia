@@ -60,7 +60,7 @@ public class AutonomousOpMode extends LinearOpMode {
     //========================================
     // DECLARE OPMODE MEMBERS
     //========================================
-    //Nice Day
+    //NiceDay
     // Misc
     private final ElapsedTime runtime = new ElapsedTime();
 
