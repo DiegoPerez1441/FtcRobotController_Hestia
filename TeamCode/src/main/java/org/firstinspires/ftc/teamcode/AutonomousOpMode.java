@@ -125,9 +125,7 @@ public class AutonomousOpMode extends LinearOpMode {
         while (opModeIsActive()) {
             start();
             double leftDrive = 1.0;
-            double leftDrive = -1.0;
             double rightDrive = 1.0;
-            double rightDrive = -1.0;
 
             //double leftPower:
             //double rightPower;
