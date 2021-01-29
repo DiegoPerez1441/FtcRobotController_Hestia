@@ -120,10 +120,17 @@ public class AutonomousOpMode extends LinearOpMode {
         waitForStart();
         runtime.reset();
 
+
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
-            double leftPower:
-            double rightPower;
+            start();
+            private DcMotor leftDrive = 1.0;
+            private DcMotor leftDrive = -1.0;
+            private DcMotor rightDrive = 1.0;
+            private DcMotor rightDrive = -1.0;
+
+            //double leftPower:
+            //double rightPower;
             // Since this is an autonomous Op Mode, you can't control the robot with gamepads
             /*
             // Setup a variable for each drive wheel to save power level for telemetry
