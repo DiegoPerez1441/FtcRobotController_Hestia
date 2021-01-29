@@ -63,7 +63,7 @@ public class AutonomousOpMode extends LinearOpMode {
     //NiceDay
     // Misc
     private final ElapsedTime runtime = new ElapsedTime();
-
+    Double power = 0.5;
     // Servos
     //We created a servo object an a variable to hold its position
     Servo clawServo;
@@ -120,12 +120,20 @@ public class AutonomousOpMode extends LinearOpMode {
         waitForStart();
         runtime.reset();
 
+        leftDrive.setPower(power);
+        rightDrive.setPower(power);
 
+        sleep(2000);
+
+        power = 0.0;
+
+        leftDrive.setPower(power);
+        rightDrive.setPower(power);
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
             start();
-            double leftDrive = 1.0;
-            double rightDrive = 1.0;
+
+
 
             //double leftPower:
             //double rightPower;
