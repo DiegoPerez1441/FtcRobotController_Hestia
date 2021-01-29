@@ -124,10 +124,10 @@ public class AutonomousOpMode extends LinearOpMode {
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
             start();
-            private DcMotor leftDrive = 1.0;
-            private DcMotor leftDrive = -1.0;
-            private DcMotor rightDrive = 1.0;
-            private DcMotor rightDrive = -1.0;
+            double leftDrive = 1.0;
+            double leftDrive = -1.0;
+            double rightDrive = 1.0;
+            double rightDrive = -1.0;
 
             //double leftPower:
             //double rightPower;
