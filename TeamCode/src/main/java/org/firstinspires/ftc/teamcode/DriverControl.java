@@ -62,11 +62,13 @@ public class DriverControl extends LinearOpMode {
     private final ElapsedTime runtime = new ElapsedTime();
 
     // Motors
-    private DcMotor leftDrive = null;
-    private DcMotor rightDrive = null;
-
+    private DcMotor frontLeftDrive = null;
+    private DcMotor frontRightDrive = null;
+    private DcMotor backLeftDrive = null;
+    private DcMotor backRightDrive = null;
+    
     // We created a servo object an a variable to hold its position
-    Servo clawServo;
+   /* Servo clawServo;
     double clawServo_position = 0.0;
 
     Servo clawServoHand1;
@@ -77,7 +79,7 @@ public class DriverControl extends LinearOpMode {
 
     Servo clawServoHand2;
     double clawServoHand2_position = 0.0;
-
+*/
     @Override
     public void runOpMode() {
         telemetry.addData("Status", "Initialized");
@@ -88,7 +90,7 @@ public class DriverControl extends LinearOpMode {
         //========================================
 
         // We have the hardware mapped to the servo object to the actual servo
-        clawServo = hardwareMap.servo.get("clawServo");
+   /*     clawServo = hardwareMap.servo.get("clawServo");
         clawServoHand1 = hardwareMap.servo.get("ClawServoHand");
 
         clawServo2 = hardwareMap.servo.get("ClawServo2");
@@ -100,17 +102,21 @@ public class DriverControl extends LinearOpMode {
 
         clawServo2.setPosition(clawServo2_position);
         clawServoHand2.setPosition(clawServoHand2_position);
-
+*/
         // Initialize the hardware variables. Note that the strings used here as parameters
         // to 'get' must correspond to the names assigned during the robot configuration
         // step (using the FTC Robot Controller app on the phone).
-        leftDrive  = hardwareMap.get(DcMotor.class, "leftDrive");
-        rightDrive = hardwareMap.get(DcMotor.class, "rightDrive");
+        frontLeftDrive  = hardwareMap.get(DcMotor.class, "frontLeftDrive");
+        frontRightDrive = hardwareMap.get(DcMotor.class, "frontRightDrive");
+        backLeftDrive = hardwareMap.get(DcMotor.class, "backLeftDrive");
+        backRightDrive = hardwareMap.get(DcMotor.class, "backRightDrive");
 
         // Most robots need the motor on one side to be reversed to drive forward
         // Reverse the motor that runs backwards when connected directly to the battery
         leftDrive.setDirection(DcMotor.Direction.FORWARD);
         rightDrive.setDirection(DcMotor.Direction.REVERSE);
+        backLeftDrive.setDirection(DcMotor.Direction.FORWARD);
+        backRightDrive.setDirection(DcMotor.Direction.REVERSE);
 
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
@@ -120,8 +126,10 @@ public class DriverControl extends LinearOpMode {
         while (opModeIsActive()) {
 
             // Setup a variable for each drive wheel to save power level for telemetry
-            double leftPower;
-            double rightPower;
+            double frontLeftPower;
+            double frontRightPower;
+            double backLeftPower;
+            double backRightPower;
 
             // Choose to drive using either Tank Mode, or POV Mode
             // Comment out the method that's not used.  The default below is POV.
@@ -130,8 +138,10 @@ public class DriverControl extends LinearOpMode {
             // - This uses basic math to combine motions and is easier to drive straight.
             double drive = -gamepad1.left_stick_y;
             double turn  =  gamepad1.right_stick_x;
-            leftPower    = Range.clip(drive + turn, -1.0, 1.0) ;
-            rightPower   = Range.clip(drive - turn, -1.0, 1.0) ;
+            frontLeftPower = Range.clip(drive + turn, -1.0, 1.0) ;
+            frontRightPower = Range.clip(drive - turn, -1.0, 1.0) ;
+            backLeftPower = Range.clip(drive + turn, -1.0, 1.0) ;
+            backRightPower = Range.clip(drive - turn, -1.0, 1.0) ;
 
             // Tank Mode uses one stick to control each wheel.
             // - This requires no math, but it is hard to drive forward slowly and keep straight.
@@ -139,13 +149,17 @@ public class DriverControl extends LinearOpMode {
             // rightPower = -gamepad1.right_stick_y ;
 
             // Send calculated power to wheels
-            leftDrive.setPower(leftPower);
-            rightDrive.setPower(rightPower);
+            frontLeftDrive.setPower(frontLeftPower);
+            frontRightDrive.setPower(frontRightPower);
+            backLeftDrive.setPower(backLeftPower);
+            backRightDrive.setPower(backRightPower);
 
             // A button to break instantly
             if (gamepad1.right_stick_button == true) {
-                leftDrive.setPower(0);
-                rightDrive.setPower(0);
+                frontLeftDrive.setPower(0);
+                frontRightDrive.setPower(0);
+                backLeftDrive.setPower(0);
+                backRightDrive.setPower(0);
             }
 
             /*
@@ -170,7 +184,7 @@ public class DriverControl extends LinearOpMode {
             /*
              * Servo STUFF
              * */
-
+/*
             if (DriverProfile == 1){
                 if(gamepad1.x) {
                     clawServo.setPosition(1);
@@ -202,7 +216,7 @@ public class DriverControl extends LinearOpMode {
 
             // Both of them return and receive a value from 0.0 - 1.0
             clawServo.setPosition(gamepad1.right_trigger);
-
+*/
             /*
              * Telemetry
              * */
