@@ -134,7 +134,7 @@ public class AutonomousOpMode extends LinearOpMode {
         backLeftDrive.setPower(power);
 
 
-        sleep(2000);
+        sleep(10000);
 
         power = 0.0;
 
