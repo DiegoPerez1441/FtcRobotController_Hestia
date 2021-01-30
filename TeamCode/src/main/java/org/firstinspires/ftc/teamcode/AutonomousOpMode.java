@@ -36,6 +36,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
+import com.qualcomm.robotcore.util.Hardware;
 import com.qualcomm.robotcore.util.Range;
 
 
@@ -63,20 +64,20 @@ public class AutonomousOpMode extends LinearOpMode {
     //NiceDay
     // Misc
     private final ElapsedTime runtime = new ElapsedTime();
-    Double power = 0.5;
+
     // Servos
     //We created a servo object an a variable to hold its position
-    Servo clawServo;
-    double clawServo_position = 0.0;
+    //Servo clawServo;
+    //double clawServo_position = 0.0;
 
-    Servo clawServoHand1;
-    double clawServoHand1_position = 0.0;
+   // Servo clawServoHand1;
+    //double clawServoHand1_position = 0.0;
 
-    Servo clawServo2;
-    double clawServo2_position = 0.0;
+    //Servo clawServo2;
+    //double clawServo2_position = 0.0;
 
-    Servo clawServoHand2;
-    double clawServoHand2_position;
+   // Servo clawServoHand2;
+   // double clawServoHand2_position;
 
     // Motors
     private DcMotor backLeftDrive = null;
@@ -89,23 +90,22 @@ public class AutonomousOpMode extends LinearOpMode {
         telemetry.addData("Status", "Initialized");
         telemetry.update();
 
-        /*
          * Hardware Mapping
-         * */
+         *
 
         // We have the hardware mapped to the servo object to the actual servo
 
-        clawServo = hardwareMap.servo.get("clawServo");
-        clawServoHand1 = hardwareMap.servo.get("ClawServoHand");
-        clawServo2 = hardwareMap.servo.get("ClawServo2");
-        clawServoHand2 = hardwareMap.servo.get("clawServoHand2");
+        //clawServo = hardwareMap.servo.get("clawServo");
+       // clawServoHand1 = hardwareMap.servo.get("ClawServoHand");
+       // clawServo2 = hardwareMap.servo.get("ClawServo2");
+       // clawServoHand2 = hardwareMap.servo.get("clawServoHand2");
 
         // Reset the servo's position to 0 degrees
 
-        clawServo.setPosition(clawServo_position);
-        clawServoHand1.setPosition(clawServoHand1_position);
-        clawServo2.setPosition(clawServo2_position);
-        clawServoHand2.setPosition(clawServoHand2_position);
+        //clawServo.setPosition(clawServo_position);
+        //clawServoHand1.setPosition(clawServoHand1_position);
+        //clawServo2.setPosition(clawServo2_position);
+       // clawServoHand2.setPosition(clawServoHand2_position);
 
         // Initialize the hardware variables. Note that the strings used here as parameters
         // to 'get' must correspond to the names assigned during the robot configuration
@@ -140,7 +140,7 @@ public class AutonomousOpMode extends LinearOpMode {
         backRightDrive.setPower(power);
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
-            start();
+            //start();
 
 
 
@@ -185,9 +185,11 @@ public class AutonomousOpMode extends LinearOpMode {
              * The System.out.println() commands will only print on the computer's console and not
              * on the driver control station. To achieve this you will need to use telemetry
              * */
-            int DriverProfile = 1;
 
-            if (gamepad1.right_bumper && DriverProfile == 1) {
+            //int DriverProfile = 1;
+
+
+            /*if (gamepad1.right_bumper && DriverProfile == 1) {
                 DriverProfile = DriverProfile + 1;
                 System.out.println("We are currently on Driver Profile #" + DriverProfile);
             } else if (gamepad1.left_bumper && DriverProfile == 2) {
@@ -199,7 +201,7 @@ public class AutonomousOpMode extends LinearOpMode {
              * Servo STUFF
              * */
 
-            if (DriverProfile == 1) {
+            /*if (DriverProfile == 1) {
                 if (gamepad1.x) {
                     clawServo.setPosition(1);
                 } else if (gamepad1.y) {
