@@ -111,7 +111,8 @@ public class AutonomousOpMode extends LinearOpMode {
         // Initialize the hardware variables. Note that the strings used here as parameters
         // to 'get' must correspond to the names assigned during the robot configuration
         // step (using the FTC Robot Controller app on the phone).
-        double power = 1.0;
+            double power = 0.3;
+            double rewop = 1.0;
 
         frontLeftDrive = hardwareMap.get(DcMotor.class, "frontLeftDrive");
         frontRightDrive = hardwareMap.get(DcMotor.class, "frontRightDrive");
@@ -130,18 +131,19 @@ public class AutonomousOpMode extends LinearOpMode {
         runtime.reset();
 
         frontLeftDrive.setPower(power);
-        frontRightDrive.setPower(power);
-        backRightDrive.setPower(power);
+        frontRightDrive.setPower(rewop);
+        backRightDrive.setPower(rewop);
         backLeftDrive.setPower(power);
 
 
         sleep(10000);
 
         power = 0.0;
+        rewop = 0.0;
 
         frontLeftDrive.setPower(power);
-        frontRightDrive.setPower(power);
-        backLeftDrive.setPower(power);
+        frontRightDrive.setPower(rewop);
+        backLeftDrive.setPower(rewop);
         backRightDrive.setPower(power);
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
