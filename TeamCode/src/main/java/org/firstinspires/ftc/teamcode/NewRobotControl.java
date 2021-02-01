@@ -36,23 +36,9 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
-
-/**
- * This file contains an minimal example of a Linear "OpMode". An OpMode is a 'program' that runs in either
- * the autonomous or the teleop period of an FTC match. The names of OpModes appear on the menu
- * of the FTC Driver Station. When an selection is made from the menu, the corresponding OpMode
- * class is instantiated on the Robot Controller and executed.
- *
- * This particular OpMode just executes a basic Tank Drive Teleop for a two wheeled robot
- * It includes all the skeletal structure that all linear OpModes contain.
- *
- * Use Android Studios to Copy this Class, and Paste it into your team's code folder with a new name.
- * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
- */
-
-@TeleOp(name="Driver Control", group="Linear Opmode")
+@TeleOp(name="New Robot Control", group="Linear Opmode")
 //@Disabled
-public class DriverControl extends LinearOpMode {
+public class NewRobotControl extends LinearOpMode {
 
     //========================================
     // DECLARE OPMODE MEMBERS
@@ -136,13 +122,14 @@ public class DriverControl extends LinearOpMode {
 
             // POV Mode uses left stick to go forward, and right stick to turn.
             // - This uses basic math to combine motions and is easier to drive straight.
-            double drive = -gamepad1.left_stick_y;
-            double turn  =  gamepad1.right_stick_x;
-            double mathematics = gamepad1.right_stick_x * 1.5;
-            frontLeftPower = Range.clip(drive + turn + mathematics, -1.0, 1.0) ;
-            frontRightPower = Range.clip(drive - turn - mathematics, -1.0, 1.0) ;
-            backLeftPower = Range.clip(drive - turn + mathematics, -1.0, 1.0) ;
-            backRightPower = Range.clip(drive + turn - mathematics, -1.0, 1.0) ;
+            double vertical = -gamepad1.left_stick_y;
+            double horizontal  =  gamepad1.left_stick_x;
+            double turn = gamepad1.right_stick_x;
+            frontRightPower = Range.clip(- turn + (vertical - horizontal), -1.0, 1.0);
+            backRightPower = Range.clip(- turn + (vertical + horizontal), -1.0, 1.0) ;
+            frontLeftPower = Range.clip(turn + (vertical + horizontal), -1.0, 1.0) ;
+            backLeftPower = Range.clip(turn + (vertical - horizontal), -1.0, 1.0) ;
+
 
             // Tank Mode uses one stick to control each wheel.
             // - This requires no math, but it is hard to drive forward slowly and keep straight.
@@ -156,7 +143,7 @@ public class DriverControl extends LinearOpMode {
             backRightDrive.setPower(backRightPower);
 
             // A button to break instantly
-            if (gamepad1.dpad_down == true) {
+            if (gamepad1.right_stick_button) {
                 frontLeftDrive.setPower(0);
                 frontRightDrive.setPower(0);
                 backLeftDrive.setPower(0);
@@ -231,3 +218,4 @@ public class DriverControl extends LinearOpMode {
         }
     }
 }
+
