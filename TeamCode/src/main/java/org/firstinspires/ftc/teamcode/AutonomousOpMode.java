@@ -130,8 +130,11 @@ public class AutonomousOpMode extends LinearOpMode {
         waitForStart();
         runtime.reset();
 
+        backRightDrive.setPower(rewop);
+        backLeftDrive.setPower(power);
         frontLeftDrive.setPower(power);
         frontRightDrive.setPower(rewop);
+        
 
         sleep(4000);
         power = 0.0;
@@ -140,8 +143,8 @@ public class AutonomousOpMode extends LinearOpMode {
         frontLeftDrive.setPower(power);
         sleep(1000);
 
-        power = 0.5;
-        rewop = 0.5;
+        power = 0.1;
+        rewop = 0.1;
         frontRightDrive.setPower(rewop);
         backLeftDrive.setPower(power);
 
