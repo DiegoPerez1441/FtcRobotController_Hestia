@@ -111,8 +111,8 @@ public class AutonomousOpMode extends LinearOpMode {
         // Initialize the hardware variables. Note that the strings used here as parameters
         // to 'get' must correspond to the names assigned during the robot configuration
         // step (using the FTC Robot Controller app on the phone).
-            double power = 1.0;
-            double rewop = 1.0;
+            double power = 0.3;
+            double rewop = 0.3;
 
         frontLeftDrive = hardwareMap.get(DcMotor.class, "frontLeftDrive");
         frontRightDrive = hardwareMap.get(DcMotor.class, "frontRightDrive");
