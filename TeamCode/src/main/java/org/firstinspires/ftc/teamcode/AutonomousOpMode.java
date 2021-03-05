@@ -91,28 +91,8 @@ public class AutonomousOpMode extends LinearOpMode {
         telemetry.addData("Status", "Initialized");
         telemetry.update();
 
-         * Hardware Mapping
-         *
-
-        // We have the hardware mapped to the servo object to the actual servo
-
-        //clawServo = hardwareMap.servo.get("clawServo");
-       // clawServoHand1 = hardwareMap.servo.get("ClawServoHand");
-       // clawServo2 = hardwareMap.servo.get("ClawServo2");
-       // clawServoHand2 = hardwareMap.servo.get("clawServoHand2");
-
-        // Reset the servo's position to 0 degrees
-
-        //clawServo.setPosition(clawServo_position);
-        //clawServoHand1.setPosition(clawServoHand1_position);
-        //clawServo2.setPosition(clawServo2_position);
-       // clawServoHand2.setPosition(clawServoHand2_position);
-
-        // Initialize the hardware variables. Note that the strings used here as parameters
-        // to 'get' must correspond to the names assigned during the robot configuration
-        // step (using the FTC Robot Controller app on the phone).
-            double power = 0.3;
-            double rewop = 0.3;
+        double power = 0.3;
+        double rewop = 0.3;
 
         frontLeftDrive = hardwareMap.get(DcMotor.class, "frontLeftDrive");
         frontRightDrive = hardwareMap.get(DcMotor.class, "frontRightDrive");
@@ -132,19 +112,18 @@ public class AutonomousOpMode extends LinearOpMode {
 
         backRightDrive.setPower(rewop);
         backLeftDrive.setPower(power);
-        frontLeftDrive.setPower(power);
-        frontRightDrive.setPower(rewop);
+        frontLeftDrive.setPower(0.2);
+        frontRightDrive.setPower(0.2);
         
-
-        sleep(4000);
+        sleep(2000);
         power = 0.0;
         rewop = 0.0;
         frontRightDrive.setPower(rewop);
         frontLeftDrive.setPower(power);
         sleep(1000);
 
-        power = 0.1;
-        rewop = 0.1;
+        power = 0.5;
+        rewop = 0.5;
         frontRightDrive.setPower(rewop);
         backLeftDrive.setPower(power);
 
